@@ -11,7 +11,7 @@ import ElButton  from './ui/button/ElButton.vue';
 export default {
   name: 'app',
 
-  components: { ElButton },
+  components: { 'el-button': ElButton },
 
   data () {
     return {
