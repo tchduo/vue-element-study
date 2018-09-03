@@ -1,24 +1,27 @@
 <template>
+  
   <div id="app">
-    <el-button></el-button>
+
+    <app-header></app-header>
+    <br><br>
+    <router-view></router-view>
   </div>
+
 </template>
+
+
 
 <script>
 
-import ElButton  from './ui/button/ElButton.vue';
+  import Header from './web/Header.vue';
 
-export default {
-  name: 'app',
-
-  components: { 'el-button': ElButton },
-
-  data () {
-    return {
-      
+  export default {
+    components: {
+      'app-header': Header
     }
   }
-}
+
+
 /**
  * import sass: https://stackoverflow.com/questions/46491510/vue-js-separate-css-scss-from-the-single-vue-file
  * 
@@ -27,6 +30,7 @@ export default {
     @import './foo.scss';
   </style>
  */
+
 </script>
 
 
@@ -38,7 +42,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 60px auto 0px 60px;
 }
 
 h1, h2 {

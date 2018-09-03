@@ -1,14 +1,81 @@
 <template>
   <button 
     class="el-button"
+    @click="handleClick"
+    :disabled="buttonDisabled || loading"
+    :autofocus="autofocus"
+    :type="nativeType"
+    :class="[
+      type ? 'el-button--' + type : '',
+      buttonSize ? 'el-button--' + buttonSize : '',
+      {
+        'is-disabled': buttonDisabled,
+        'is-loading': loading,
+        'is-plain': plain,
+        'is-round': round,
+        'is-circle': circle
+      }
+    ]"
   >
-    simple buttons
+    <i class="el-icon-loading" v-if="loading"></i>
+    <i :class="icon" v-if="icon && !loading"></i>
+    <span v-if="$slots.default"><slot></slot></span>
   </button>
 </template>
 
 <script>
 export default {
-  name: 'ElButton'
+  name: 'ElButton',
+
+  inject:{  
+    elForm: {
+      default: ''
+    },
+    elFormItem: {
+      default: ''
+    }
+  }, // inject
+
+  props: {
+    type: {
+      type: String,
+      default: ''
+    },
+    icon: {
+      type: String,
+      default: ''
+    },
+    nativeType: {
+      type: String,
+      default: 'button'
+    },
+    size: String,
+    loading: Boolean,
+    disabled: Boolean,
+    plain: Boolean,
+    autofocus: Boolean,
+    round: Boolean,
+    circle: Boolean
+  }, // props
+
+  computed: {
+    _elFormItemSize() {
+      return (this.elFormItem || {}).elFormItemSize;
+    },
+    buttonSize() {
+      return this.size || this._elFormItemSize || (this.$ELEMENT || {}).size;
+    },
+    buttonDisabled() {
+      return this.disabled || (this.elForm || {}).disabled;
+    }
+  }, // computed
+
+  methods: {
+    handleClick(evt) {
+      this.$emit('click', evt);
+    }
+  }, // methods
+
 }
 </script>
 
