@@ -178,7 +178,7 @@
       border-color: transparent;
     }
   }
-}
+} // @include b(button)
 
 @include b(button-group) {
   @include utils-clearfix;
@@ -247,4 +247,4 @@
     }
   }
 
-}
+} // @include b(button-group)
