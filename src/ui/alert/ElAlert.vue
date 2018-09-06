@@ -24,18 +24,41 @@
             {{ description }}
           </p>
         </slot>
-        <i></i>
+        <i
+          class="el-alert__closebtn"
+          :class="{ 'is-customed': closeText !== '', 'el-icon-close': closeText === '' }"
+          v-show="closable"
+          @click="close()"
+        >
+          {{ closeText }}
+        </i>
       </div> 
-
-
     </div>
   </transition>
 </template>
 
 <script>
+
+const TYPE_CLASSES_MAP = {
+  'success': 'el-icon-success',
+  'warning': 'el-icon-warning',
+  'error': 'el-icon-error'
+};
+
 export default {
-  
-}
+  name: 'ElAlert',
+
+  props: {
+    title: {
+      type: String,
+      default: '',
+      required: true 
+    },
+    
+  },
+
+
+};
 </script>
 
 <style lang="scss" scoped>
