@@ -54,9 +54,57 @@ export default {
       default: '',
       required: true 
     },
-    
+    description: {
+      type: String,
+      default: ''
+    },
+    type:  {
+      type: String,
+      default: 'info'
+    },
+    closable: {
+      type: Boolean,
+      default: true
+    },
+    closeText: {
+      type: String,
+      default: ''
+    },
+    showIcon: Boolean,
+    center: Boolean     
   },
 
+  data() {
+    return {
+      visible: true
+    };
+  }, // data()
+
+  methods: {
+    close() {
+      this.visible = false;
+      this.$emit('close');
+    }
+  }, // methods
+
+  computed: {
+    typeclass() {
+      return `el-alert--${ this.type }`;
+    },
+    
+    iconClass() {
+      return TYPE_CLASSES_MAP[this.type] || 'el-icon-info';
+    },
+    
+    isBigIcon() {
+      return this.description || this.$slots.default ? 'is-big' : '';
+    },
+
+    isBoldTitle() {
+      return this.description || this.$slots.default ? 'is-bold' : '';
+    }
+
+  } // computed
 
 };
 </script>

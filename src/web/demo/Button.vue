@@ -85,11 +85,15 @@
 <script>
 
 import ElButton from '../../ui/button/ElButton.vue';
+import ElButtonGroup from '../../ui/button/ElButtonGroup.vue';
 
 export default {
-  name: 'app',
+  name: 'app-button',
 
-  components: { 'el-button': ElButton },
+  components: { 
+    'el-button': ElButton,
+    'el-button-group': ElButtonGroup 
+    },
 
   data () {
     return {
